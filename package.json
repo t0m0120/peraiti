@@ -1,0 +1,41 @@
+{
+  "name": "peraiti",
+  "author": "t0m0120",
+  "description": "peraiti page template",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "npm-run-all -p buildcss buildjs",
+    "start": "npm-run-all -p watchcss watchjs server",
+    "buildjs":
+      "uglifyjs ./script/*.js  --compress --mangle -o  ./build/script.min.js",
+    "buildcss": "postcss ./css/core.css -o ./build/style.css -r",
+    "server": "browser-sync start -c bs-config.js",
+    "watchcss": "chokidar  \"css/\" -c \"npm run buildcss\"",
+    "watchjs": "chokidar  \"script/\" -c \"npm run buildjs\"",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,css}": ["prettier --write", "git add"]
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.18.13",
+    "chokidar-cli": "^1.2.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "normalize.css": "^7.0.0",
+    "npm-run-all": "^4.1.1",
+    "postcss-cli": "^4.1.1",
+    "prettier": "^1.8.2",
+    "stylelint": "^8.3.1",
+    "stylelint-config-standard": "^18.0.0",
+    "uglify-js": "^3.2.2",
+    "postcss-import": "^11.1.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-simple-vars": "^4.1.0"
+  },
+  "dependencies": {}
+}
